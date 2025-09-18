@@ -7,24 +7,33 @@ from openpyxl import load_workbook
 pyautogui.PAUSE = 0.5
 pyautogui.FAILSAFE = True
 
+# Pega a pasta onde o script/exe está
+script_dir = os.path.dirname(os.path.abspath(__file__))
+img_dir = os.path.join(script_dir, "img")
+
 def localizar_imagem(nome_arquivo, confianca=0.8, tentativas=5, intervalo=1):
     """
     Tenta localizar uma imagem na tela com múltiplas tentativas.
+    Todas as imagens devem estar dentro da pasta 'img/'.
     """
+    caminho = os.path.join(img_dir, nome_arquivo)
     for _ in range(tentativas):
         try:
-            loc = pyautogui.locateCenterOnScreen(nome_arquivo, confidence=confianca)
+            loc = pyautogui.locateCenterOnScreen(caminho, confidence=confianca)
             if loc:
                 return loc
         except Exception as e:
-            print(f"[Aviso] Erro ao procurar {nome_arquivo}: {e}")
+            print(f"[Aviso] Erro ao procurar {caminho}: {e}")
         time.sleep(intervalo)
     return None
 
 # Seleciona planilha
 root = Tk()
 root.withdraw()
-file_path = filedialog.askopenfilename(title="Selecione a planilha", filetypes=[("Excel files", "*.xlsx *.xls")])
+file_path = filedialog.askopenfilename(
+    title="Selecione a planilha",
+    filetypes=[("Excel files", "*.xlsx *.xls")]
+)
 root.destroy()
 
 if not file_path:
@@ -81,7 +90,6 @@ for row in sheet.iter_rows(min_row=2, values_only=True):
 
         # Se chegou aqui, status carregou
         pyautogui.press('f8')
-        
 
         # Clicar em setinha.png e datas.png
         setinha_loc = localizar_imagem("setinha.png", confianca=0.8)

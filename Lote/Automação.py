@@ -63,11 +63,11 @@ def main():
     print("Coloque a tela do SAP na frente. Começando em 5 segundos...")
     time.sleep(5)
  
-    caminho_apareceu = os.path.join(os.getcwd(), "apareceu.png")
-    caminho_classe = os.path.join(os.getcwd(), "classe.png")
-    caminho_sim = os.path.join(os.getcwd(), "sim.png")
-    caminho_peneira = os.path.join(os.getcwd(), "peneira.png")
-    caminho_nlote = os.path.join(os.getcwd(), "nlote.png")
+    caminho_apareceu = os.path.join(img_dir, "apareceu.png")
+    caminho_classe = os.path.join(img_dir, "classe.png")
+    caminho_sim = os.path.join(img_dir, "sim.png")
+    caminho_peneira = os.path.join(img_dir, "peneira.png")
+    caminho_nlote = os.path.join(img_dir, "nlote.png")
  
     for item in dados:
         verificar_escape()  # <-- Checa ESC no início do loop
@@ -191,3 +191,4 @@ def main():
  
 if __name__ == "__main__":
     main()
+    
