@@ -2,3 +2,4 @@ openpyxl
 pywin32
 pyautogui
 keyboard
+pyinstaller

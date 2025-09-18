@@ -5,6 +5,8 @@ import os
 import sys
 import keyboard
  
+img_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "img")
+
 def escolher_arquivo():
     from tkinter import Tk
     from tkinter.filedialog import askopenfilename
